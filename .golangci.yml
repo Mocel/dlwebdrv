@@ -1,0 +1,42 @@
+run:
+  timeout: 5m
+linters:
+  presets:
+    - bugs
+    - error
+    - format
+    - unused
+  enable:
+    - gosimple
+  disable:
+    - deadcode
+    - exhaustivestruct
+    - golint
+    - ifshort
+    - interfacer
+    - maligned
+    - nosnakecase
+    - scopelint
+    - structcheck
+    - varcheck
+linters-settings:
+  depguard:
+    rules:
+      main:
+        files:
+          - $all
+        listMode: strict
+        allow:
+          - $gostd
+          - github.com/pkg/errors
+      test:
+        files:
+          - $test
+        listMode: lax
+  gosmopolitan:
+    allow-time-local: false
+    watch-for-scripts:
+      - Hangul
+  wrapcheck:
+    ignorePackageGlobs:
+      - "github.com/Mocel/dlwebdrv/*"
