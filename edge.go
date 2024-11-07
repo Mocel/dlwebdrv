@@ -57,7 +57,7 @@ func downloadEdgeDriver(ctx context.Context, channel, platform, savePath, drvNam
 	// Linux64:
 	// edgedriver_linux64.zip
 
-	parentSel := `div[data-fetch-key="block-web-driver:0"] .common-card-list__card`
+	parentSel := `div.block-page.block-page--ready.block-page--theme-default section:nth-child(3) div.common-card-list__card-group`
 
 	slog.DebugContext(ctx, "parent selector", slog.String("selector", parentSel))
 
@@ -75,7 +75,7 @@ func downloadEdgeDriver(ctx context.Context, channel, platform, savePath, drvNam
 
 	parent := doc.Find(parentSel).Eq(childIdx)
 	if parent.Length() == 0 {
-		return fmt.Errorf("not found parent element: %s %s", channel, platform)
+		return fmt.Errorf("not found parent element for %s %s", channel, platform)
 	}
 
 	sel := "div.block-web-driver__version-links > a"
